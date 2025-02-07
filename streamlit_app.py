@@ -48,9 +48,10 @@ topics = {
     "Công nghệ AI": "training_data/ai",
     "Môi trường": "training_data/environment",
     "Y tế": "training_data/healthcare"
+    "Quản trị, kinh doanh": "training_data/qtkd"
 }
 
-selected_topic = st.selectbox("📌 Chọn chủ đề bạn muốn hỏi:", list(topics.keys()))
+selected_topic = st.selectbox("📌 Chọn lĩnh vực mà bạn quan tâm:", list(topics.keys()))
 selected_folder = topics[selected_topic]
 
 # 🏋️ **Tải dữ liệu huấn luyện theo chủ đề**
