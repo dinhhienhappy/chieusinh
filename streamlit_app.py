@@ -35,7 +35,7 @@ except:
 # **Hiển thị nội dung từ `02.assistant.txt` với font nhỏ hơn**
 assistant_content = rfile("02.assistant.txt")
 st.markdown(f"""
-    <h3 style="text-align: center;">{assistant_content}</h3>
+    <h5 style="text-align: center;">{assistant_content}</h5>
     """, unsafe_allow_html=True)
 
 # **Hộp chọn chủ đề**
