@@ -42,14 +42,6 @@ openai_api_key = st.secrets.get("OPENAI_API_KEY")
 # Tạo OpenAI client
 client = OpenAI(api_key=openai_api_key)
 
-
-
-# Tin nhắn khởi tạo cho assistant
-INITIAL_ASSISTANT_MESSAGE = {
-    "role": "assistant",
-    "content": rfile("02.assistant.txt"),
-}
-
 # 📌 **Thêm menu chọn chủ đề**
 topics = {
     "Tổng quan": "training_data/general",
@@ -59,7 +51,7 @@ topics = {
     "Quản trị, kinh doanh": "training_data/qtkd"
 }
 
-selected_topic = st.selectbox("📌 Chọn lĩnh vực mà bạn quan tâm:", list(topics.keys()))
+selected_topic = st.selectbox("📌 Hãy chọn lĩnh vực bạn quan tâm:", list(topics.keys()))
 selected_folder = topics[selected_topic]
 
 # 🏋️ **Tải dữ liệu huấn luyện theo chủ đề**
@@ -68,6 +60,11 @@ INITIAL_SYSTEM_MESSAGE = {
     "content": rfiles_from_folder(selected_folder)  # Chỉ dùng dữ liệu của chủ đề đã chọn
 }
 
+# Tin nhắn khởi tạo cho assistant
+INITIAL_ASSISTANT_MESSAGE = {
+    "role": "assistant",
+    "content": rfile("02.assistant.txt"),
+}
 
 # Khởi tạo session lưu tin nhắn
 if "messages" not in st.session_state or st.session_state.get("last_selected_topic") != selected_topic:
