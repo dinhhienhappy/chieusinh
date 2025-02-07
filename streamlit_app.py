@@ -35,7 +35,7 @@ except:
 # **Hiển thị nội dung từ `02.assistant.txt` với font nhỏ hơn**
 assistant_content = rfile("02.assistant.txt")
 st.markdown(f"""
-    <h7 style="text-align: center;">{assistant_content}</h7>
+    <h7 style="text-align: center;">{assistant_content}</h>
     """, unsafe_allow_html=True)
 
 # **Hộp chọn chủ đề**
@@ -53,8 +53,11 @@ topic_folder_mapping = {
     "Quản trị, kinh doanh": "training_data/qtkd",
 }
 
-# **Chọn thư mục huấn luyện tương ứng**
-selected_folder = topic_folder_mapping.get(selected_topic, "training_data/misc")
+selected_folder = topic_folder_mapping.get(selected_topic)
+
+if selected_folder is None:
+    st.warning("🔹 Vui lòng chọn một chủ đề hợp lệ!")
+    st.stop()  # Dừng chương trình nếu không có chủ đề hợp lệ
 
 # **Lấy OpenAI API key**
 openai_api_key = st.secrets.get("OPENAI_API_KEY")
