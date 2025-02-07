@@ -32,21 +32,21 @@ try:
 except:
     pass
 
-# **Hiển thị nội dung từ `02.assistant.txt` TRÊN hộp chọn chủ đề**
+# **Hiển thị nội dung từ `02.assistant.txt` với font nhỏ hơn**
 assistant_content = rfile("02.assistant.txt")
 st.markdown(f"""
-    <h2 style="text-align: center;">{assistant_content}</h2>
+    <h3 style="text-align: center;">{assistant_content}</h3>
     """, unsafe_allow_html=True)
 
 # **Hộp chọn chủ đề**
 selected_topic = st.selectbox(
     "🔍 Chọn lĩnh vực bạn quan tâm:",
-    ["Tổng quan", "Y tế", "Môi trường", "AI", "Quản trị, kinh doanh"]
+    ["Y tế", "Môi trường", "AI", "Quản trị, kinh doanh"]
 )
 
 # **Mapping chủ đề với thư mục dữ liệu**
 topic_folder_mapping = {
-    "Tổng quan": "training_data/general",
+    
     "Y tế": "training_data/healthcare",
     "Môi trường": "training_data/environment",
     "AI": "training_data/ai",
@@ -68,15 +68,9 @@ INITIAL_SYSTEM_MESSAGE = {
     "content": rfiles_from_folder(selected_folder)
 }
 
-# **Khởi tạo tin nhắn từ assistant**
-INITIAL_ASSISTANT_MESSAGE = {
-    "role": "assistant",
-    "content": assistant_content,
-}
-
 # **Lưu tin nhắn vào session nếu chưa có**
 if "messages" not in st.session_state:
-    st.session_state.messages = [INITIAL_SYSTEM_MESSAGE, INITIAL_ASSISTANT_MESSAGE]
+    st.session_state.messages = [INITIAL_SYSTEM_MESSAGE]
 else:
     # Cập nhật dữ liệu huấn luyện nếu người dùng đổi chủ đề
     st.session_state.messages[0] = INITIAL_SYSTEM_MESSAGE
