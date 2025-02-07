@@ -47,7 +47,7 @@ topics = {
     "Tổng quan": "training_data/general",
     "Công nghệ AI": "training_data/ai",
     "Môi trường": "training_data/environment",
-    "Y tế": "training_data/healthcare"
+    "Y tế": "training_data/healthcare",
     "Quản trị, kinh doanh": "training_data/qtkd"
 }
 
